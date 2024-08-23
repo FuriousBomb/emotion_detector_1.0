@@ -12,9 +12,9 @@ def welcome_page():
 def detect(): 
     req = request.args.get("textToAnalyze") 
     resp = emotion_detector(req) 
-    inp = resp 
+    inp = resp["dominant_emotion"]
     del resp["dominant_emotion"] 
-    return (("For the given statement, the system response is {}.".format(resp), "The dominant emotion is {}".format(inp.get("dominant_emotion"))))
+    return (("For the given statement, the system response is {}. The dominant emotion is <b>{}</b>".format((resp), inp)))
 
 if __name__ == "__main__":
     app.run()
